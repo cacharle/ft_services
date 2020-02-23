@@ -1,9 +1,10 @@
 version: "3"
 services:
     nginx:
-        image: "nginx:alpine"
+        build: ./nginx
         ports:
             - 80:80
-    mysql:
-        build: ./mysql/Dockerfile
+            - 443:443
+    # mysql:
+    #     build: ./mysql/Dockerfile
     
