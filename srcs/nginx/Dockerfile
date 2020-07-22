@@ -1,13 +1,14 @@
 FROM alpine
 
-COPY ./src /root
-
 RUN apk update && \
     apk upgrade && \
-    apk add nginx openssh openrc && \
-    mkdir -p /run/nginx && \
+    apk add nginx openssh openrc
+
+COPY ./src /root
+
+RUN mkdir -p /run/nginx && \
     mkdir -p /www && \
-    echo 'bonjour' > /www/index.html && \
+    mv /root/index.html /www/index.html && \
     rm /etc/nginx/conf.d/default.conf && \
     mv /root/ft_services.conf /etc/nginx/conf.d/ft_services.conf
 
