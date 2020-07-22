@@ -1,7 +1,8 @@
 #!/bin/sh
 
+/etc/init.d/sshd start
 
-rm /etc/nginx/conf.d/default.conf
-mv /root/ft_services.conf /etc/nginx/conf.d/ft_services.conf
-
-nginx -g "daemon off;"
+nginx -t || exit 1
+nginx
+sleep infinity &
+wait
