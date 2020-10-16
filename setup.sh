@@ -1,12 +1,22 @@
 #!/bin/sh
 
-if ! [ -x `command -v docker` ]; then
-	echo "Error: docker is not installed"
-	exit 1
-elif ! [ -x `command -v docker-compose` ]; then
-	echo "Error: docker-compose is not installed"
-	exit 1
-fi
+names='
+ftps
+'
 
-cd ./srcs
-docker-compose --project-name ft_services up
+# nginx
+# wordpress
+# phpmyadmin
+
+echo 'Building docker images'
+echo "$names" | xargs -Iname docker build -t cacharle-name srcs/name
+
+minikube start
+
+eval $(minikube docker-env)
+
+echo 'Creating cluster'
+echo "$names" | xargs -Iname kubectl apply -f srcs/name/name.yaml
+
+
+minikube dashboard

@@ -2,7 +2,7 @@ FROM alpine
 
 RUN apk update && \
     apk upgrade && \
-	apk add mysql mysql-client
+	apk add mysql mysql-client --no-cache
 
 COPY ./src /root
 

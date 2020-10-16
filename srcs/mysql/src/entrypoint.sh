@@ -1,18 +1,20 @@
 #!/bin/sh
 
-# addgroup mysql mysql
-#
-# MYSQLD_DIR=/run/mysqld
-#
-# mkdir $MYSQLD_DIR
-# chown mysql:mysql $MYSQL_DIR
+mkdir -vp /run/mysqld
 
-mysql -u root --skip-password <<EOF
+echo -e 'asdfasdf123\nasdfasdf123\n' | adduser cacharle
+
+mysql_install_db --user=cacharle
+
+/usr/bin/mysqld --user=cacharle --skip-password --bootstrap <<EOF
 CREATE DATABASE wordpressdb;
-CREATE USER 'wordpressuser'@'localhost' IDENTIFIED BY 'wordpresspass';
-GRANT ALL PRIVILEGES ON wordpressdb.* TO 'wordpressuser'@'localhost';
-IDENTIFIED BY 'wordpresspass';
+CREATE USER 'cacharle'@'localhost' IDENTIFIED BY 'pass';
+GRANT ALL PRIVILEGES ON wordpressdb.* TO 'cacharle'@'localhost';
+IDENTIFIED BY 'pass';
 FLUSH PRIVILEGES;
 EOF
 
-mysql
+# until mysql; do
+# sleep 5
+
+/usr/bin/mysqld --user=cacharle
