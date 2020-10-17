@@ -2,6 +2,7 @@
 
 echo 'root:password' | chpasswd
 echo 'PermitRootLogin yes' >> /etc/ssh/sshd_config
+# echo 'Port 30022' >> /etc/ssh/sshd_config
 
 openrc
 touch /run/openrc/softlevel

@@ -15,4 +15,4 @@ RUN openssl req -x509 -nodes -days 7300 -subj "/C=FR/ST=fr/L=Belgiaque/O=19/CN=c
 EXPOSE 21
 
 # docker run -p 21:21 -p 21000:21000 -p 21001:21001 -p 21002:21002 -p 21003:21003 -p 21004:21004 -t ftps
-CMD ["pure-ftpd", "-p", "21000:21004", "-P", "192.168.99.110", "-Y", "2"]
+CMD ["pure-ftpd", "-p", "21000:21000", "-P", "192.168.99.110", "-Y", "2"]

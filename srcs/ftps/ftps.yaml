@@ -18,11 +18,6 @@ spec:
         - image: cacharle-ftps
           imagePullPolicy: Never
           name: cacharle-ftps-container
-          ports:
-            - containerPort: 21
-              hostPort: 9021 # change me
-            - containerPort: 21000
-              hostPort: 21000
 
 ---
 
@@ -35,8 +30,8 @@ spec:
   ports:
     - name: ftps
       targetPort: 21
-      port: 9021
-    - name: passive1
+      port: 21
+    - name: ftps-data
       targetPort: 21000
       port: 21000
   selector:

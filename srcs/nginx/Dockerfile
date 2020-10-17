@@ -12,6 +12,7 @@ RUN mkdir -p /run/nginx && \
     rm /etc/nginx/conf.d/default.conf && \
     mv /root/ft_services.conf /etc/nginx/conf.d/ft_services.conf
 
+EXPOSE 22
 EXPOSE 80
 EXPOSE 443
 
