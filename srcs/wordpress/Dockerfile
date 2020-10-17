@@ -9,6 +9,8 @@ RUN curl 'https://wordpress.org/wordpress-5.5.1.tar.gz' > wordpress.tar.gz && \
     tar xf wordpress.tar.gz && \
     mv wordpress /var/www
 
+COPY wp-config.php /var/www/wp-config.php
+
 EXPOSE 5050
 
 CMD ["php", "-S", "0.0.0.0:5050", "-t", "/var/www"]
