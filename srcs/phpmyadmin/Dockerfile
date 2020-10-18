@@ -9,6 +9,10 @@ RUN curl 'https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-lan
     unzip phpmyadmin.zip && \
     mv 'phpMyAdmin-5.0.2-all-languages' /var/www
 
+COPY config.inc.php /var/www/phpmyadmin
+RUN mkdir /etc/phpmyadmin
+COPY config.inc.php /etc/phpmyadmin
+
 EXPOSE 5000
 
 CMD ["php", "-S", "0.0.0.0:5000", "-t", "/var/www"]
