@@ -10,8 +10,8 @@
 
 
 echo 'Building docker images'
-# docker build -t cacharle-ftps       srcs/ftps
-# docker build -t cacharle-nginx      srcs/nginx
+docker build -t cacharle-ftps       srcs/ftps
+docker build -t cacharle-nginx      srcs/nginx
 docker build -t cacharle-wordpress  srcs/wordpress
 docker build -t cacharle-phpmyadmin srcs/phpmyadmin
 docker build -t cacharle-mysql      srcs/mysql
@@ -21,8 +21,8 @@ docker build -t cacharle-mysql      srcs/mysql
 # eval $(minikube docker-env)
 
 
-# kubectl apply -f srcs/ftps/ftps.yaml
-# kubectl apply -f srcs/nginx/nginx.yaml
+kubectl apply -f srcs/ftps/ftps.yaml
+kubectl apply -f srcs/nginx/nginx.yaml
 kubectl apply -f srcs/wordpress/wordpress.yaml
 kubectl apply -f srcs/phpmyadmin/phpmyadmin.yaml
 kubectl apply -f srcs/mysql/mysql.yaml
