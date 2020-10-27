@@ -21,13 +21,13 @@ spec:
         - image: cacharle-mysql
           imagePullPolicy: Never
           name: cacharle-mysql-container
-      #     volumeMounts:
-      #       - name: mysql-volume
-      #         mountPath: /var/lib/data
-      # volumes:
-      #   - name: mysql-volume
-      #     persistentVolumeClaim:
-      #       claimName: mysql-volume
+          volumeMounts:
+            - name: mysql-volume
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: mysql-volume
+          persistentVolumeClaim:
+            claimName: mysql-volume
 
 ---
 
@@ -39,7 +39,6 @@ metadata:
     app: mysql
 spec:
   type: ClusterIP
-  # clusterIP: None
   ports:
     - name: mysql
       port: 3306
@@ -47,17 +46,17 @@ spec:
   selector:
     app: mysql
 
-# ---
-#
-# apiVersion: v1
-# kind: PersistentVolumeClaim
-# metadata:
-#   name: mysql-volume
-#   labels:
-#     app: mysql
-# spec:
-#   accessModes:
-#     - ReadWriteOnce  # read/write by one pod
-#   resources:
-#     requests:
-#       storage: 1Gi
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-volume
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce  # read/write by one pod
+  resources:
+    requests:
+      storage: 1Gi
