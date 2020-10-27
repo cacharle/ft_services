@@ -7,7 +7,7 @@ RUN apk update && \
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-# COPY my.cnf /etc/my.cnf.d/ft_services.cnf
+COPY my.cnf /etc/my.cnf
 
 EXPOSE 3306
 

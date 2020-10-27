@@ -9,7 +9,7 @@ RUN curl 'https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-all-lan
     unzip phpmyadmin.zip && \
     mv 'phpMyAdmin-5.0.2-all-languages' /var/www
 
-COPY config.inc.php /var/www/phpmyadmin
+COPY config.inc.php /var/www
 RUN mkdir /etc/phpmyadmin
 COPY config.inc.php /etc/phpmyadmin
 
