@@ -15,13 +15,18 @@ COPY config.inc.php /var/www
 RUN mkdir /etc/phpmyadmin
 COPY config.inc.php /etc/phpmyadmin
 
-EXPOSE 5000
-
 COPY nginx.conf /etc/nginx/conf.d
 RUN mkdir -p /run/nginx && \
     rm /etc/nginx/conf.d/default.conf
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x entrypoint.sh
+
+RUN curl 'https://dl.influxdata.com/telegraf/releases/telegraf-1.16.0_linux_i386.tar.gz' > telegraf.tar.gz && \
+    tar xvf telegraf.tar.gz && \
+    mv 'telegraf-1.16.0' telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
+
+EXPOSE 5000
 
 CMD "/entrypoint.sh"

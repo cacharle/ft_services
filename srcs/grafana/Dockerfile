@@ -7,6 +7,17 @@ RUN apk update && \
     tar xvf grafana.tar.gz && \
     mv grafana-7.2.1 grafana
 
-RUN mkdir /grafana/data && touch /grafana/data/grafana.db
+RUN mkdir /grafana/data
+COPY grafana.db /grafana/data/grafana.db
 
-CMD cd /grafana/bin && ./grafana-server
+RUN curl 'https://dl.influxdata.com/telegraf/releases/telegraf-1.16.0_linux_i386.tar.gz' > telegraf.tar.gz && \
+    tar xvf telegraf.tar.gz && \
+    mv 'telegraf-1.16.0' telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+EXPOSE 3000
+
+CMD "/entrypoint.sh"

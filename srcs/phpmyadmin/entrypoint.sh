@@ -1,5 +1,7 @@
 #!/bin/sh
 
+/telegraf/usr/bin/telegraf &
+
 nginx -t || exit 1
 
 openrc

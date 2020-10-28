@@ -7,6 +7,8 @@ openrc
 touch /run/openrc/softlevel
 /etc/init.d/sshd start
 
+/telegraf/usr/bin/telegraf &
+
 nginx -t || exit 1
 nginx
 sleep infinity &

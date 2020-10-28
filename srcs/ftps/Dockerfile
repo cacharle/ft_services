@@ -3,7 +3,7 @@ FROM alpine
 RUN apk update && \
     apk upgrade && \
     apk add --repository http://dl-3.alpinelinux.org/alpine/edge/testing/ pure-ftpd && \
-    apk add openssl
+    apk add openssl curl
 
 RUN adduser -D -h /home/charles charles && \
     echo -e 'pass\npass' | passwd charles && \
@@ -12,7 +12,15 @@ RUN adduser -D -h /home/charles charles && \
 RUN openssl req -x509 -nodes -days 7300 -subj "/C=FR/ST=fr/L=Belgiaque/O=19/CN=cacharle" \
     -newkey rsa:2048 -keyout /etc/ssl/private/pure-ftpd.pem -out /etc/ssl/private/pure-ftpd.pem
 
-EXPOSE 21
+RUN curl 'https://dl.influxdata.com/telegraf/releases/telegraf-1.16.0_linux_i386.tar.gz' > telegraf.tar.gz && \
+    tar xvf telegraf.tar.gz && \
+    mv 'telegraf-1.16.0' telegraf
+COPY telegraf.conf /etc/telegraf/telegraf.conf
 
-# docker run -p 21:21 -p 21000:21000 -p 21001:21001 -p 21002:21002 -p 21003:21003 -p 21004:21004 -t ftps
-CMD ["pure-ftpd", "-p", "21000:21000", "-P", "192.168.99.110", "-Y", "2"]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x entrypoint.sh
+
+EXPOSE 21
+EXPOSE 21000
+
+CMD "/entrypoint.sh"

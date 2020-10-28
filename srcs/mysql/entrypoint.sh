@@ -1,5 +1,7 @@
 #!/bin/sh
 
+/telegraf/usr/bin/telegraf &
+
 mkdir -p /run/mysqld
 mkdir -p /var/lib/mysql
 
