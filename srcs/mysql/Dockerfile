@@ -7,6 +7,7 @@ RUN apk update && \
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 COPY my.cnf /etc/my.cnf
+COPY wordpress.sql /wordpress.sql
 
 RUN curl 'https://dl.influxdata.com/telegraf/releases/telegraf-1.16.0_linux_i386.tar.gz' > telegraf.tar.gz && \
     tar xvf telegraf.tar.gz && \

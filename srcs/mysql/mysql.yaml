@@ -18,7 +18,7 @@ spec:
         app: mysql
     spec:
       containers:
-        - image: cacharle-mysql
+        - image: mysql-service
           imagePullPolicy: Never
           name: cacharle-mysql-container
           volumeMounts:

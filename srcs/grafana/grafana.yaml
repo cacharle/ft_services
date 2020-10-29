@@ -18,7 +18,7 @@ spec:
         app: grafana
     spec:
       containers:
-        - image: cacharle-grafana
+        - image: grafana-service
           imagePullPolicy: Never
           name: cacharle-grafana-container
           ports:

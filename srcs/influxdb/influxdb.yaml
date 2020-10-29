@@ -18,7 +18,7 @@ spec:
         app: influxdb
     spec:
       containers:
-        - image: cacharle-influxdb
+        - image: influxdb-service
           imagePullPolicy: Never
           name: cacharle-influxdb-container
           ports:

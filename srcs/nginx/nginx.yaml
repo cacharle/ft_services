@@ -18,7 +18,7 @@ spec:
         app: nginx
     spec:
       containers:
-        - image: cacharle-nginx
+        - image: nginx-service
           imagePullPolicy: Never
           name: cacharle-nginx-container
           ports:

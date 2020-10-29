@@ -18,7 +18,7 @@ spec:
         app: wordpress
     spec:
       containers:
-        - image: cacharle-wordpress
+        - image: wordpress-service
           imagePullPolicy: Never
           name: cacharle-wordpress-container
 

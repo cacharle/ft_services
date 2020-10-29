@@ -18,7 +18,7 @@ spec:
         app: phpmyadmin
     spec:
       containers:
-        - image: cacharle-phpmyadmin
+        - image: phpmyadmin-service
           imagePullPolicy: Never
           name: cacharle-phpmyadmin-container
 
