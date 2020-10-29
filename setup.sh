@@ -1,19 +1,17 @@
 #!/bin/sh
 
 build_image () {
-    echo "=============================================== Building $1"
+    echo "=============================================== BUILDING $1"
     docker build -t "$1-service" "srcs/$1"
     echo
 }
 
 create_service () {
-    echo "=============================================== Creating Service $1"
+    echo "=============================================== CREATING SERVICE $1"
     kubectl apply -f "srcs/$1/$1.yaml"
     echo
 }
 
-
-echo '--- Building docker images'
 build_image ftps
 build_image nginx
 build_image wordpress
