@@ -19,6 +19,7 @@ GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'%' IDENTIFIED BY 'root';
 FLUSH PRIVILEGES;
 EOF
 
+    echo '-----------SETUP WORDPRESS-----------'
     /usr/bin/mysqld --user=root --datadir=/var/lib/mysql --bootstrap < /wordpress.sql
 fi
 
