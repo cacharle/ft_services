@@ -10,6 +10,4 @@ touch /run/openrc/softlevel
 /telegraf/usr/bin/telegraf &
 
 nginx -t || exit 1
-nginx
-sleep infinity &
-wait
+nginx -g 'daemon off;'

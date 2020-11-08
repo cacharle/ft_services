@@ -9,8 +9,8 @@ log () {
 
 if [ -z "$update_only" ]
 then
-    minikube delete
     minikube start --driver=virtualbox
+    minikube dashboard &
 
     eval $(minikube docker-env)
 
@@ -55,9 +55,3 @@ create_service phpmyadmin
 create_service mysql
 create_service grafana
 create_service influxdb
-
-if [ -z "$update_only" ]
-then
-    log "LAUCHING dashboard"
-    minikube dashboard
-fi

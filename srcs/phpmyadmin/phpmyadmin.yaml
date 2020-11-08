@@ -21,6 +21,14 @@ spec:
         - image: phpmyadmin-service
           imagePullPolicy: Never
           name: cacharle-phpmyadmin-container
+          livenessProbe:
+            exec:
+              command:
+              - /bin/sh
+              - -c
+              - ps aux | grep -v grep | grep php-fpm
+            initialDelaySeconds: 5
+            periodSeconds: 5
 
 ---
 
